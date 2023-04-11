@@ -1,5 +1,6 @@
 package quest.quest02.domain.item;
 
-public interface ItemRepository extends d
-{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {
 }

@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  profiles:
+    active: local
+
+
+  jpa:
+    console:
+      enabled: true
+    datasource:
+      url: jdbc:h2:~/testdb
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+
+    hibernate:
+      ddl-auto: update #create update none
+    properties:
+      hibernate:
+        format_sql: true
+    #    show-sql: true
+      defer-datasource-initialization: true
+
+
+  sql:
+    init:
+      mode: always
+
+logging.level:
+  org.hibernate.SQL: debug
