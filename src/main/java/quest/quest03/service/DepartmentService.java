@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import quest.ex.customEx.CustomDepartmentException;
 import quest.ex.customEx.CustomInvalidException;
 import quest.ex.customEx.CustomNotFoundException;
 import quest.quest01.type.Response;
@@ -29,7 +30,7 @@ public class DepartmentService {
         log.info("departmentInfoRegister start = {}", info.toString());
 
         if (!Pattern.matches("^[A-Z]*$", info.getDepartment())) {
-            throw new CustomInvalidException(INVALID);
+            throw new CustomDepartmentException(INVALID);
         }
 
         Department findEntity = departmentRepository.findByName(info.getDepartment());
@@ -38,7 +39,7 @@ public class DepartmentService {
             departmentRepository.save(department);
             return info.getDepartment() +", "+info.getCount();
         } else {
-            throw new CustomInvalidException(ALREADY_REGISTERED);
+            throw new CustomDepartmentException(ALREADY_REGISTERED);
         }
     }
 
@@ -47,7 +48,7 @@ public class DepartmentService {
         if (relation.getParent().equals("*")) {
             Department childEntity = departmentRepository.findByName(relation.getChild());
             if (childEntity == null) {
-                throw new CustomNotFoundException(NOT_FOUND_DEPARTMENT);
+                throw new CustomDepartmentException(NOT_FOUND_DEPARTMENT);
             } else {
                 childEntity.removeParent(childEntity.getParent());
                 return getResult(childEntity);
@@ -56,7 +57,7 @@ public class DepartmentService {
 
         if (!Pattern.matches("^[A-Z]*$", relation.getParent()) ||
                 !Pattern.matches("^[A-Z]*$", relation.getChild())) {
-            throw new CustomInvalidException(INVALID);
+            throw new CustomDepartmentException(INVALID);
         }
 
         try {
@@ -66,10 +67,10 @@ public class DepartmentService {
                 parentEntity.addChildren(childEntity);
                 return getResult(childEntity);
             } else {
-                throw new CustomInvalidException(PARENT_ONLY_ONE);
+                throw new CustomDepartmentException(PARENT_ONLY_ONE);
             }
         } catch (NullPointerException e) {
-            throw new CustomNotFoundException(NOT_FOUND_DEPARTMENT);
+            throw new CustomDepartmentException(NOT_FOUND_DEPARTMENT);
         }
     }
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import quest.ex.customEx.CustomDepartmentException;
 import quest.ex.customEx.CustomInvalidException;
 import quest.ex.customEx.CustomNotFoundException;
 import quest.quest01.type.Response;
@@ -53,8 +54,8 @@ class DepartmentServiceTest {
         DepartmentInfo info = new DepartmentInfo("QA",100);
         String result = service.departmentInfoRegister(info);
 
-        CustomInvalidException ex =
-                assertThrows(CustomInvalidException.class, () -> service.departmentInfoRegister(info));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.departmentInfoRegister(info));
 
         assertEquals(ex.getMessage(), ALREADY_REGISTERED.getMessage());
     }
@@ -64,8 +65,8 @@ class DepartmentServiceTest {
     public void infoTest03(){
         DepartmentInfo info = new DepartmentInfo("qa",100);
 
-        CustomInvalidException ex =
-                assertThrows(CustomInvalidException.class, () -> service.departmentInfoRegister(info));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.departmentInfoRegister(info));
 
         assertEquals(ex.getMessage(), INVALID.getMessage());
     }
@@ -76,8 +77,8 @@ class DepartmentServiceTest {
     public void relationTest01(){
         Relation relation = new Relation("QA", "DEV");
 
-        CustomNotFoundException ex =
-                assertThrows(CustomNotFoundException.class, () -> service.relationRegister(relation));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.relationRegister(relation));
 
         assertEquals(ex.getMessage(), NOT_FOUND_DEPARTMENT.getMessage());
     }
@@ -90,8 +91,8 @@ class DepartmentServiceTest {
 
         Relation relation = new Relation("QA", "DEV");
 
-        CustomNotFoundException ex =
-                assertThrows(CustomNotFoundException.class, () -> service.relationRegister(relation));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.relationRegister(relation));
 
         assertEquals(ex.getMessage(), NOT_FOUND_DEPARTMENT.getMessage());
     }
@@ -105,8 +106,8 @@ class DepartmentServiceTest {
 
         Relation relation = new Relation("QA", "DEV");
 
-        CustomNotFoundException ex =
-                assertThrows(CustomNotFoundException.class, () -> service.relationRegister(relation));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.relationRegister(relation));
 
         assertEquals(ex.getMessage(), NOT_FOUND_DEPARTMENT.getMessage());
     }
@@ -123,8 +124,8 @@ class DepartmentServiceTest {
 
         Relation relation = new Relation("qa", "dev");
 
-        CustomInvalidException ex =
-                assertThrows(CustomInvalidException.class, () -> service.relationRegister(relation));
+        CustomDepartmentException ex =
+                assertThrows(CustomDepartmentException.class, () -> service.relationRegister(relation));
 
         assertEquals(ex.getMessage(), INVALID.getMessage());
     }

@@ -43,8 +43,10 @@ public class Department {
 
 
     public void removeParent(Department parent) {
-        this.parent = null;
-        parent.getChildren().remove(this);
+        if (this.parent != null) {
+            this.parent = null;
+            parent.getChildren().remove(this);
+        }
     }
 }
 

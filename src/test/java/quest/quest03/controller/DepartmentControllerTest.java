@@ -55,8 +55,7 @@ class DepartmentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("request", "qa, 100"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value(INVALID.getCode()))
-                .andExpect(jsonPath("$.message").value(INVALID.getMessage()))
+                .andExpect(content().string(INVALID.getMessage()))
                 .andDo(print());
     }
 
@@ -68,8 +67,7 @@ class DepartmentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("request", "*, 100"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value(INVALID.getCode()))
-                .andExpect(jsonPath("$.message").value(INVALID.getMessage()))
+                .andExpect(content().string(INVALID.getMessage()))
                 .andDo(print());
     }
 

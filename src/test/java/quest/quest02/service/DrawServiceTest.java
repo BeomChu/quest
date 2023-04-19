@@ -1,14 +1,13 @@
 package quest.quest02.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.AbstractAuditable_;
 import quest.quest02.domain.drawer.Drawer;
 import quest.quest02.domain.drawer.DrawerRepository;
 import quest.quest02.domain.drawerItem.DrawerItem;
+import quest.quest02.domain.drawerItem.DrawerItemRepository;
 import quest.quest02.dto.request.DrawRequest;
 import quest.quest02.dto.response.DrawResponseDto;
 
@@ -28,7 +27,15 @@ class DrawServiceTest {
     DrawerRepository drawerRepository;
 
     @Autowired
+    DrawerItemRepository drawerItemRepository;
+
+    @Autowired
     EntityManager em;
+
+    @BeforeEach
+    public void before(){
+        drawerItemRepository.deleteAll();
+    }
 
     @Test
     @DisplayName("200원을 고객이 사용하면 2번의 뽑기 기회가 제공된다, 그리고 돈이 차감된다")
