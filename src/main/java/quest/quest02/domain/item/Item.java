@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import quest.quest02.domain.type.Grade;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -20,6 +17,7 @@ import java.time.LocalDateTime;
 public class Item {
 
     @Id
+    @Column(name = "item_id")
     private Long id;
 
     private String name;

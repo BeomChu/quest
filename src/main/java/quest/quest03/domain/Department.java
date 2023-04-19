@@ -1,8 +1,8 @@
 package quest.quest03.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import quest.quest03.dto.request.DepartmentInfo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Department {
 
     @Id @GeneratedValue
@@ -41,10 +41,10 @@ public class Department {
     }
 
 
-    public Department editInfo(DepartmentInfo info) {
-        this.name = info.getDepartment();
-        this.count = info.getCount();
-        return this;
+
+    public void removeParent(Department parent) {
+        this.parent = null;
+        parent.getChildren().remove(this);
     }
 }
 

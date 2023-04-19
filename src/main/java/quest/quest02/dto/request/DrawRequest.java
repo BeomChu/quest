@@ -17,8 +17,8 @@ public class DrawRequest {
 
     private LocalDateTime localDateTime;
 
-    public DrawRequest(int count) {
+    public DrawRequest(int count, LocalDateTime localDateTime) {
         this.count = count;
-        this.localDateTime = LocalDateTime.now();
+        this.localDateTime = localDateTime;
     }
 }

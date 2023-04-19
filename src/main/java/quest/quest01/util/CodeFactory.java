@@ -7,7 +7,7 @@ import java.util.Random;
 @Slf4j
 public class CodeFactory {
 
-    public static int pageCount = 0;
+    public static int page = 0;
 
     public static String itemCodeFactory(){
         Random random = new Random();

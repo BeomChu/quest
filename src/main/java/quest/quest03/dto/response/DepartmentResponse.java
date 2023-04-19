@@ -6,11 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Data
-public class DepartmentResponse<T> {
+public class DepartmentResponse{
 
-    private int code;
-    private String message;
-    private T data;
+    private String department;
+    private String count;
+
+    public DepartmentResponse(String department, String count) {
+        this.department = department;
+        this.count = count;
+    }
 }

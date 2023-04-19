@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Relation {
+
     private String parent;
     private String child;
+
+
 
 }
