@@ -18,5 +18,7 @@
 
 ### 📌 Notion
 - [SHARETREATS - 시작하기](https://www.notion.so/SHARETREATS-6b2a5a0faa1a4b0787e9a43539462096)
-
-
+ PACKAGE
+- Quest01 - 상품 교환 서비스
+- Quest02 - 빠칭코 상품 뽑기 서비스 
+- Quest03 - 회사 조직(부서) 인원수 파악 서비스
